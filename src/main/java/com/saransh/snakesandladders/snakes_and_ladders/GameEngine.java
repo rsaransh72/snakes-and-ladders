@@ -9,6 +9,12 @@ public class GameEngine {
     public GameEngine(Board board) { this.board = board; }
 
     public int move(int currentPosition, int diceOutcome) {
+    	
+        if (diceOutcome < 1 || diceOutcome > 6)
+            throw new IllegalArgumentException("Dice must be 1..6");
+        if (currentPosition < 0 || currentPosition > board.getSize())
+            throw new IllegalArgumentException("Invalid current position");
+    	
         int tentative = currentPosition + diceOutcome;
         if (tentative > board.getSize()) return currentPosition;
 
