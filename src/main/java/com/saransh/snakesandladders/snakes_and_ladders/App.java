@@ -5,6 +5,6 @@ package com.saransh.snakesandladders.snakes_and_ladders;
  */
 public class App {
     public static void main(String[] args) {
-        System.out.println("Hello World!");
+        System.out.println("Snakes and Ladders");
     }
 }
