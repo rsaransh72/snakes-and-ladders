@@ -34,4 +34,17 @@ public class Board {
         b.addSnake(head, tail);
         return b;
     }
+    public static Board defaultBoard() {
+        Board board = new Board(100);
+        board.addLadder(7, 33);
+        board.addLadder(37, 85);
+        board.addLadder(51, 72);
+        board.addLadder(22, 58);
+        board.addSnake(36, 19);
+        board.addSnake(65, 35);
+        board.addSnake(87, 32);
+        board.addSnake(99, 10);
+        return board;
+    }
+
 }
