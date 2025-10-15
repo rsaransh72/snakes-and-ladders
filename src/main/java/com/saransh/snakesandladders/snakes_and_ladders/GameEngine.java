@@ -26,5 +26,10 @@ public class GameEngine {
 
         return tentative;
     }
+    
+    public boolean isWinner(int position) {
+        return position == board.getSize();
+    }
+
 }
 
