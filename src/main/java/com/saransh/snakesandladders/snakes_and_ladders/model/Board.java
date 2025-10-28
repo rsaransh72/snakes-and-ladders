@@ -1,13 +1,13 @@
 package com.saransh.snakesandladders.snakes_and_ladders.model;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 public class Board {
     private final int size;
-    private final Map<Integer, Integer> snakes = new HashMap<>();
-    private final Map<Integer, Integer> ladders = new HashMap<>();
+    private final List<Snake> snakes = new ArrayList<>();
+    private final List<Ladder> ladders = new ArrayList<>();
 
     public Board(int size) {
         this.size = size;
@@ -18,20 +18,27 @@ public class Board {
     }
 
     public void addSnake(int head, int tail) {
-        snakes.put(head, tail);
+        snakes.add(new Snake(head, tail));
     }
 
     public void addLadder(int bottom, int top) {
-        ladders.put(bottom, top);
+        ladders.add(new Ladder(bottom, top));
     }
 
     public Optional<Integer> snakeAt(int position) {
-        return Optional.ofNullable(snakes.get(position));
-    }
+        return snakes.stream()
+        .filter(snake -> snake.getHead() == position)
+        .findFirst()
+        .map(Snake::getTail);
+}
+
 
     public Optional<Integer> ladderAt(int position) {
-        return Optional.ofNullable(ladders.get(position));
-    }
+        return ladders.stream()
+        		.filter(ladder -> ladder.getBottom() == position)
+                .findFirst()
+                .map(Ladder::getTop);
+}
 
     public static Board defaultBoard() {
         Board board = new Board(100);
